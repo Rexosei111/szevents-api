@@ -7,8 +7,12 @@ from fastapi_jwt_auth import AuthJWT
 from fastapi_jwt_auth.exceptions import AuthJWTException
 from fastapi.responses import JSONResponse
 from events.main import event_router
+from fastapi_pagination import add_pagination
+
 
 app = FastAPI()
+
+add_pagination(app)
 
 
 @AuthJWT.load_config

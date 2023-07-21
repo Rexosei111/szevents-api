@@ -1,4 +1,4 @@
-from datetime import date, time
+from datetime import date, time, datetime
 from enum import Enum
 from typing import Optional
 
@@ -29,5 +29,31 @@ class EventsRead(BaseModel):
         description="This image will also be used in the tickets that will be sent to customers"
     )
     status: Optional[EventStatus] = Field(default=EventStatus.Draft)
-    startDate: Optional[date]
-    startTime: Optional[time]
+    startDate: Optional[datetime]
+    startTime: Optional[datetime]
+
+
+class EventCreate(BaseModel):
+    name: str = Field(..., description="Name of organiser")
+    summary: str = Field(..., description="A little information about organiser")
+    description: Optional[str] = Field(description="About organiser")
+    location: Optional[EventLocation]
+    coverImage: Optional[HttpUrl] = Field(
+        description="This image will also be used in the tickets that will be sent to customers"
+    )
+    # status: Optional[EventStatus] = Field(default=EventStatus.Draft)
+    startDate: Optional[datetime]
+    startTime: Optional[datetime]
+
+
+class EventUpdate(BaseModel):
+    name: Optional[str] = Field(description="Name of organiser")
+    summary: Optional[str] = Field(description="A little information about organiser")
+    description: Optional[str] = Field(description="About organiser")
+    location: Optional[EventLocation]
+    coverImage: Optional[HttpUrl] = Field(
+        description="This image will also be used in the tickets that will be sent to customers"
+    )
+    # status: Optional[EventStatus] = Field(default=EventStatus.Draft)
+    startDate: Optional[datetime]
+    startTime: Optional[datetime]

@@ -36,6 +36,11 @@ async def register_new_organiser(organiser_data: OrganiserCreate):
     return await new_organiser.create()
 
 
+async def get_organiser_by_id_with_events(organiser_id: str):
+    organiser = await Organisers.get(organiser_id, fetch_links=True)
+    return organiser
+
+
 async def get_organiser_by_id(organiser_id: str):
     organiser = await Organisers.get(organiser_id)
     return organiser

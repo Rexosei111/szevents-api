@@ -2,6 +2,8 @@ from enum import Enum
 from typing import List, Optional
 from pydantic import BaseModel, EmailStr, Field, HttpUrl
 
+from events.schemas import EventsRead
+
 
 class SocialMediaTypes(str, Enum):
     facebook = "facebook"
@@ -48,6 +50,10 @@ class OrganiserRead(BaseOrganiser):
     social_media_links: Optional[List[SocialMediaLinks]] = Field(
         description="List of social media handles"
     )
+
+
+class OrganiserReadWithEvents(OrganiserRead):
+    events: Optional[List[EventsRead]]
 
 
 class OrganiserUpdate(BaseModel):

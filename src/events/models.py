@@ -1,8 +1,8 @@
 from enum import Enum
 from typing import Optional
 from pydantic import Field, HttpUrl
-from beanie import Document
-from datetime import date, time
+from beanie import Document, Link, BackLink
+from datetime import date, time, datetime
 
 
 class EventStatus(str, Enum):
@@ -29,5 +29,9 @@ class Events(Document):
         description="This image will also be used in the tickets that will be sent to customers"
     )
     status: Optional[EventStatus] = Field(default=EventStatus.Draft)
-    startDate: Optional[date]
-    startTime: Optional[time]
+    startDate: Optional[datetime]
+    startTime: Optional[datetime]
+    organiser: Link["Organisers"]
+
+
+from organisers.models import Organisers

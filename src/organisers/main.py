@@ -7,6 +7,7 @@ from .services import (
     check_login_credentials,
     delete_organiser,
     get_organiser_by_id,
+    get_organiser_by_id_with_events,
     register_new_organiser,
     update_organiser_data,
 )
@@ -14,6 +15,7 @@ from .schemas import (
     LoginSchema,
     OrganiserCreate,
     OrganiserRead,
+    OrganiserReadWithEvents,
     OrganiserUpdate,
     TokenRead,
 )

@@ -3,7 +3,7 @@ from typing import List, Optional
 
 from pydantic import BaseModel, Field, HttpUrl, EmailStr
 
-from beanie import Document, Indexed
+from beanie import Document, Indexed, Link, BackLink
 
 
 class contact_types(str, Enum):
@@ -46,3 +46,7 @@ class Organisers(Document):
     social_media_links: Optional[List[SocialMediaLinks]] = Field(
         default=[], description="List of social media handles"
     )
+    events: Optional[List[BackLink["Events"]]] = Field(original_field="organiser")
+
+
+from events.models import Events
