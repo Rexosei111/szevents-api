@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Optional
+from typing import List, Optional
 from pydantic import Field, HttpUrl
 from beanie import Document, Link, BackLink
 from datetime import date, time, datetime
@@ -32,6 +32,8 @@ class Events(Document):
     startDate: Optional[datetime]
     startTime: Optional[datetime]
     organiser: Link["Organisers"]
+    tickets: Optional[List[BackLink["Tickets"]]] = Field(original_field="event")
 
 
 from organisers.models import Organisers
+from tickets.models import Tickets

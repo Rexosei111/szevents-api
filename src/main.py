@@ -3,6 +3,7 @@ import uvicorn
 from config import get_settings
 from database import init_mongodb
 from organisers.main import organisers_router
+from tickets.main import ticket_router
 from fastapi_jwt_auth import AuthJWT
 from fastapi_jwt_auth.exceptions import AuthJWTException
 from fastapi.responses import JSONResponse
@@ -27,16 +28,12 @@ def authjwt_exception_handler(request: Request, exc: AuthJWTException):
 
 app.include_router(organisers_router, prefix="/organizers", tags=["Organisers"])
 app.include_router(event_router, prefix="/events", tags=["Events"])
+app.include_router(ticket_router, prefix="/tickets", tags=["Tickets"])
 
 
 @app.on_event("startup")
 async def startup_events():
     await init_mongodb()
-
-
-@app.get("/")
-def homePage():
-    return "Home Page"
 
 
 if __name__ == "__main__":

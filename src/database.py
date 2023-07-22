@@ -3,10 +3,11 @@ from beanie import init_beanie, Document
 from motor.motor_asyncio import AsyncIOMotorClient
 from organisers.models import Organisers, SocialMediaLinks
 from events.models import EventLocation, Events
+from tickets.models import Tickets
 
 settings = get_settings()
 
-database_models = [Organisers, SocialMediaLinks, Events, EventLocation]
+database_models = [Organisers, SocialMediaLinks, Events, EventLocation, Tickets]
 
 
 async def init_mongodb():

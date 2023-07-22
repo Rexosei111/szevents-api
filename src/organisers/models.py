@@ -47,6 +47,8 @@ class Organisers(Document):
         default=[], description="List of social media handles"
     )
     events: Optional[List[BackLink["Events"]]] = Field(original_field="organiser")
+    tickets: Optional[List[BackLink["Tickets"]]] = Field(original_field="organiser")
 
 
 from events.models import Events
+from tickets.models import Tickets
